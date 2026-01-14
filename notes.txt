@@ -1,0 +1,94 @@
+# we used the following commands to install
+
+npm create @phaserjs/game@latest
+
+
+I choose 
+#√ Enter Project Name: ... my-phaser-game
+#√ Select Option: » Client Framework (React, Next.js, Vue, Angular, Svelte, SolidJS or Rapier)
+#√ Select Template: » react
+#√ Minimal or Complete Project: » Complete (Common Phaser Scene selection)
+#√ Select Development Language: » JavaScript
+
+#Next steps:
+ cd my-phaser-game
+ npm install
+ npm run dev
+
+
+ Apperantly I need to install a web server
+
+ installed wamp.net , even though I think NODE.js will work I just don't get the difference between both
+
+
+ installed node js http server from
+ 
+  npm i http-server    
+
+  # Create a new React project
+npm create vite@latest my-flappy-game -- --template react
+
+# Enter the folder
+cd my-flappy-game
+
+# Install Phaser and Tailwind
+npm install phaser
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p# Create a new React project
+npm create vite@latest my-flappy-game -- --template react
+
+
+ npm create @phaserjs/game@latest
+
+> npx
+> create-game
+
+
+o----------------------------------------------------o
+|      Welcome to the Phaser Template Installer      |
+|            Let´s start the installation            |
+|                       v1.3.0                       |
+o----------------------------------------------------o
+
+√ Enter Project Name: ... knowl-leap
+√ Select Option: » Web Bundler (Vite, Bun, Webpack, Remix, ESBuild, Parcel, Rollup or ImportMap)
+√ Select Template: » vite
+√ Minimal or Complete Project: » Complete (Common Phaser Scene selection)
+√ Select Development Language: » JavaScript
+
+√ We anonymously record which template was selected to help guide development.
+If you don't agree, press N to Quit. Otherwise, press Y. ... yes
+✔ Project Downloaded
+
+o----------------------------------------------------------o
+|               Project created successfully               |
+|                Thank you for using Phaser                |
+|        Tell us about your game! - games@phaser.io        |
+o----------------------------------------------------------o
+
+Next steps:
+1. cd knowl-leap
+  npm install
+ npm run dev
+
+
+
+# Enter the folder
+cd my-flappy-game
+
+# Install Phaser and Tailwind
+npm install phaser
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+   npm install -D tailwindcss postcss autoprefixer
+
+   npm install tailwindcss @tailwindcss/postcss postcss
+
+   https://tailwindcss.com/docs/installation/framework-guides/nextjs
+
+
+   for routing between pages
+
+   npm i react-router-dom
