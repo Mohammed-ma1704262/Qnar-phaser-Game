@@ -7,7 +7,7 @@ An educational platformer game built with Phaser and React that combines learnin
 Knowledge Leap a small interactive learning game where players answer math questions while navigating through a classic platformer environment. Each star collected presents a new question - answer correctly to continue, answer incorrectly and face game over!
 
 ## Current Features
-
+ 
 ### Main Menu System
 - **Start Screen**: Initial welcome screen
 - **Main Menu**: 
