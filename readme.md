@@ -32,10 +32,8 @@ Knowledge Leap a small interactive learning game where players answer math quest
 - Restart functionality with score display
 ## Demo Video
 
-https://github.com//Mohammed-ma1704262/Qnar-phaser-Game/main/small_demo_qnar_assignment.mp4
-
-<video src="https://raw.githubusercontent.com/Mohammed-ma1704262/Qnar-phaser-Game/main/small_demo_qnar_assignment.mp4" controls="controls" style="max-width: 100%;">
-</video>
+A Demo video Can be found here on the google drive link , the same video is uploaded to github
+ https://drive.google.com/file/d/1BvLl4T20iIDqEYErfA6wLe5vosz0K30o/view?usp=sharing
 ##  Installation & Setup
 
 ### Prerequisites
