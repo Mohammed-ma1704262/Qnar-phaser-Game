@@ -30,10 +30,12 @@ Knowledge Leap a small interactive learning game where players answer math quest
 - Correct answers increase score and continue gameplay
 - Incorrect answers result in game over
 - Restart functionality with score display
-<video src="./small_demo_qnar_assignment%20.mp4" controls width="100%"></video>
+## Demo Video
 
-<video src="https://github.com/Mohammed-ma1704262/Qnar-phaser-Game/blob/main/small_demo_qnar_assignment%20.mp4" controls width="100%"></video>
+https://github.com/user-attachments/assets/embed-code-placeholder
 
+<video src="https://raw.githubusercontent.com/Mohammed-ma1704262/Qnar-phaser-Game/main/small_demo_qnar_assignment%20.mp4" controls="controls" style="max-width: 100%;">
+</video>
 ##  Installation & Setup
 
 ### Prerequisites
