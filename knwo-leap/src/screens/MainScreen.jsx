@@ -1,54 +1,38 @@
 import { useEffect, useState } from "react";
-
 import Phaser from "phaser";
 import { PhaserGame } from "../PhaserGame";
-
-import "../../styles/global.css"; // Tailwind and Normal css path
-
+import "../../styles/global.css";
 import CustomButton from "../../components/CustomButton";
-
 import { generateQuestion } from "../functions/mathFunctions.js";
-
-import { startGame, gameCallbacks, resumeGame } from "./firstGame.js";
-
+import { startGame, gameCallbacks, resumeGame } from "./thirdGame.js";
 import QuestionMenu from "./QuestionMenu";
+
 function StartScreen() {
-    // function navigate_to(page) {
-    //     const navigate = Routes();
-    //     navigate(page);
-    // }
-
     const [showBody, setShowBody] = useState(true);
-
     const [showStartScreen, setshowStartScreen] = useState(true);
-
     const [showMainMenu, setshowMainMenu] = useState(false);
-
     const [showSubjects, setsshowSubjects] = useState(false);
-
     const [showMultiplicationChoices, setsshowMultiplicationChoices] =
         useState(false);
-
     const [showQuestionMenu, setsshowQuestionMenu] = useState(false);
-
     const [currentQuestion, setCurrentQuestion] = useState(null);
-
     const [modeChoice, setmodeChoice] = useState("None");
-
     const [currentScene, setCurrentScene] = useState(null);
-
     const [score, setScore] = useState(0);
-
     const [isGameOver, setIsGameOver] = useState(false);
 
     useEffect(() => {
-        gameCallbacks.onStarCollected = (scene) => {
+        // IMPORTANT: Use onChallengeRingPassed instead of onStarCollected
+        gameCallbacks.onChallengeRingPassed = (scene) => {
+            console.log("Challenge ring passed! Showing question...");
             setCurrentScene(scene);
             let q = generateQuestion(modeChoice);
             setCurrentQuestion(q);
             setsshowQuestionMenu(true);
         };
+
         gameCallbacks.onGameOver = (finalScore) => {
+            console.log("Game Over! Score:", finalScore);
             setScore(finalScore);
             setIsGameOver(true);
         };
@@ -56,46 +40,35 @@ function StartScreen() {
 
     function showMainMenu_swtich() {
         setshowStartScreen(false);
-
         setshowMainMenu(true);
-
         setsshowSubjects(false);
-
         setsshowMultiplicationChoices(false);
     }
 
     function showSubjectsMenu_switch() {
         setshowStartScreen(false);
-
         setshowMainMenu(false);
-
         setsshowSubjects(true);
-
         setsshowMultiplicationChoices(false);
     }
 
     function showMultiplicationChoices_switch() {
         setshowStartScreen(false);
-
         setshowMainMenu(false);
-
         setsshowSubjects(false);
-
         setsshowMultiplicationChoices(true);
     }
+
     function exit_button_swtich() {
         setshowStartScreen(true);
-
         setshowMainMenu(false);
-
         setsshowSubjects(false);
-
         setsshowMultiplicationChoices(false);
     }
-    let selectedFromUser = null;
-    function handleModeChoosen(mode) {
-        setmodeChoice(mode);
 
+    function handleModeChoosen(mode) {
+        console.log("Mode chosen:", mode);
+        setmodeChoice(mode);
         let q = generateQuestion(mode);
         setCurrentQuestion(q);
 
@@ -109,19 +82,20 @@ function StartScreen() {
         // Start the Phaser game
         startGame();
     }
+
     function restartGame() {
         console.log("RESTART CALLED");
         setIsGameOver(false);
         setsshowQuestionMenu(false);
         setCurrentQuestion(null);
 
-        gameCallbacks.onStarCollected = (scene) => {
-     
+        gameCallbacks.onChallengeRingPassed = (scene) => {
+            console.log("Challenge ring passed! Showing question...");
             setCurrentScene(scene);
             let q = generateQuestion(modeChoice);
-             setCurrentQuestion(q);
+            setCurrentQuestion(q);
             setsshowQuestionMenu(true);
-         };
+        };
 
         gameCallbacks.onGameOver = (finalScore) => {
             setScore(finalScore);
@@ -130,20 +104,21 @@ function StartScreen() {
 
         startGame();
     }
+
     return (
         <>
             <div>
                 {showBody ? (
-                    <div className="w-200   h-150 grid place-items-center  bg-gradient-to-b from-sky-400 to-blue-500   ">
+                    <div className="w-200 h-150 grid place-items-center bg-gradient-to-b from-sky-400 to-blue-500">
                         {showStartScreen ? (
                             <div>
                                 <CustomButton
                                     fullWidth
                                     textColor={"text-black"}
-                                    color="bg-gray-300 "
+                                    color="bg-gray-300"
                                     label={"Start Game"}
                                     onClick={showMainMenu_swtich}
-                                ></CustomButton>
+                                />
                             </div>
                         ) : (
                             ""
@@ -151,36 +126,34 @@ function StartScreen() {
                         {showMainMenu ? (
                             <div
                                 id="mainMenu"
-                                class="grid place-items-center gap-4 "
+                                className="grid place-items-center gap-4"
                             >
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"New Game"}
                                         onClick={showSubjectsMenu_switch}
-                                    ></CustomButton>
+                                    />
                                 </div>
-
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"Options"}
                                         onClick={showMainMenu_swtich}
-                                    ></CustomButton>
+                                    />
                                 </div>
-
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"Exit"}
                                         onClick={exit_button_swtich}
-                                    ></CustomButton>
+                                    />
                                 </div>
                             </div>
                         ) : (
@@ -189,111 +162,104 @@ function StartScreen() {
                         {showSubjects ? (
                             <div
                                 id="mainMenu"
-                                class="grid place-items-center gap-4 "
+                                className="grid place-items-center gap-4"
                             >
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"Math"}
                                         onClick={
                                             showMultiplicationChoices_switch
                                         }
-                                    ></CustomButton>
+                                    />
                                 </div>
-
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"Science"}
-                                    ></CustomButton>
+                                    />
                                 </div>
-
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"To Main Screen"}
                                         onClick={exit_button_swtich}
-                                    ></CustomButton>
+                                    />
                                 </div>
                             </div>
                         ) : (
                             ""
                         )}
                         {showMultiplicationChoices ? (
-                            <div class="flex flex-col items-center gap-8 p-6">
+                            <div className="flex flex-col items-center gap-8 p-6">
                                 <div
                                     id="mainMenu"
-                                    class="grid grid-cols-2 gap-4 w-full max-w-2xl"
+                                    className="grid grid-cols-2 gap-4 w-full max-w-2xl"
                                 >
-                                    <div className="  ">
+                                    <div>
                                         <CustomButton
                                             fullWidth
                                             textColor={"text-black"}
-                                            color="bg-gray-300 "
+                                            color="bg-gray-300"
                                             label={"Addition"}
                                             onClick={() =>
                                                 handleModeChoosen("Addition")
                                             }
-                                        ></CustomButton>
+                                        />
                                     </div>
-
-                                    <div className="  ">
+                                    <div>
                                         <CustomButton
                                             fullWidth
                                             textColor={"text-black"}
-                                            color="bg-gray-300 "
+                                            color="bg-gray-300"
                                             label={"Subtraction"}
                                             onClick={() =>
                                                 handleModeChoosen("Subtraction")
                                             }
-                                        ></CustomButton>
+                                        />
                                     </div>
-
-                                    <div className="  ">
+                                    <div>
                                         <CustomButton
                                             fullWidth
                                             textColor={"text-black"}
-                                            color="bg-gray-300 "
+                                            color="bg-gray-300"
                                             label={"Multiplication"}
                                             onClick={() =>
                                                 handleModeChoosen(
                                                     "Multiplication"
                                                 )
                                             }
-                                        ></CustomButton>
+                                        />
                                     </div>
-
-                                    <div className="  ">
+                                    <div>
                                         <CustomButton
                                             fullWidth
                                             textColor={"text-black"}
-                                            color="bg-gray-300 "
+                                            color="bg-gray-300"
                                             label={"Division"}
                                             onClick={() =>
                                                 handleModeChoosen("Division")
                                             }
-                                        ></CustomButton>
+                                        />
                                     </div>
-
-                                    <div className="  ">
+                                    <div>
                                         <CustomButton
                                             fullWidth
                                             textColor={"text-black"}
-                                            color="bg-gray-300 "
+                                            color="bg-gray-300"
                                             label={"Simple Powers"}
                                             onClick={() =>
                                                 handleModeChoosen("Powers")
                                             }
-                                        ></CustomButton>
+                                        />
                                     </div>
-
-                                    <div className="  ">
+                                    <div>
                                         <CustomButton
                                             fullWidth
                                             textColor={"text-black"}
@@ -302,18 +268,17 @@ function StartScreen() {
                                             onClick={() =>
                                                 handleModeChoosen("ALL")
                                             }
-                                        ></CustomButton>
+                                        />
                                     </div>
                                 </div>
-
-                                <div className="  ">
+                                <div>
                                     <CustomButton
                                         fullWidth
                                         textColor={"text-black"}
-                                        color="bg-gray-300 "
+                                        color="bg-gray-300"
                                         label={"To Main Screen"}
                                         onClick={exit_button_swtich}
-                                    ></CustomButton>
+                                    />
                                 </div>
                             </div>
                         ) : (
@@ -322,32 +287,43 @@ function StartScreen() {
                     </div>
                 ) : (
                     ""
-                )}{" "}
+                )}
+
+                {/* Question Menu Overlay */}
                 {showQuestionMenu && currentQuestion && (
                     <div
                         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
                         style={{ top: "300px", left: "400px" }}
-                    > 
+                    >
                         <QuestionMenu
                             question={currentQuestion.text}
                             options={currentQuestion.options}
                             ans={currentQuestion.answer}
                             onAnswered={(isCorrect) => {
+                                console.log(
+                                    "Answer received:",
+                                    isCorrect ? "CORRECT" : "WRONG"
+                                );
                                 setsshowQuestionMenu(false);
-                                resumeGame(currentScene, isCorrect);
+                                if (currentScene) {
+                                    resumeGame(currentScene, isCorrect);
+                                }
                             }}
                         />
                     </div>
                 )}
-                {/* Only show game when mode is chosen */}
+
+                {/* Game Container */}
                 {modeChoice !== "None" && (
                     <div
                         id="game-container"
                         className="absolute top-0 left-0"
                     ></div>
                 )}
+
+                {/* Game Over Screen */}
                 {isGameOver && (
-                    <div className="absolute  top-30 left-60   ">
+                    <div className="absolute top-30 left-60">
                         <div className="bg-gradient-to-b from-red-500 to-red-700 p-8 rounded-2xl text-center">
                             <h1 className="text-white text-5xl font-bold mb-4">
                                 Game Over!

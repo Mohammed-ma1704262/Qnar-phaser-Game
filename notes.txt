@@ -86,9 +86,6 @@ npx tailwindcss init -p
 
    npm install tailwindcss @tailwindcss/postcss postcss
 
-   https://tailwindcss.com/docs/installation/framework-guides/nextjs
+   
 
-
-   for routing between pages
-
-   npm i react-router-dom
+ 
