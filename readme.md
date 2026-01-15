@@ -24,12 +24,36 @@ Knowledge Leap a small interactive learning game where players answer math quest
   - Frenzy Mode (randomizes all types)
 
 ### Gameplay
-- Classic platformer controls (arrow keys, spacebar, or click/tap)
-- Star collection triggers math questions
-- Game pauses when question appears
-- Correct answers increase score and continue gameplay
-- Incorrect answers result in game over
-- Restart functionality with score display
+-Endless Runner Gameplay: Side-scrolling Flappy Bird-style mechanics
+-Controls: Tap, spacebar, or up arrow to flap
+-Collectibles:
+
+-Small rings: +5 points each
+-Large blue challenge rings: Trigger math questions
+
+
+##Question Mechanics:
+
+-Game pauses when passing through red rings
+-Correct answer rewards:
+
+-+20 points
+-3 seconds of immunity (green tint)
+-3x speed boost
+
+
+-Wrong answer penalty: +10 points , 0.1 second stun, then continue
+
+
+##Obstacles:
+
+-Pipes with gaps to navigate
+-Floating bombs with random movement
+-Top and bottom boundaries
+
+
+-Dynamic Difficulty: Speed increases with correct answers
+-Pause System: All spawning and movement freezes during questions
 ## Demo Video
 
 A Demo video Can be found here on the google drive link , the same video is uploaded to github
@@ -150,6 +174,7 @@ knowl-leap/
 │   ├── game/
 │   │   └── scenes/
 │   │       ├── firstGame.js      # Main game logic
+│   │       ├── thirdGame.js      # new game logic
 │   │       ├── MainScreen.jsx    # React wrapper component
 │   │       └── QuestionMenu.jsx  # Question UI component
 │   ├── components/
@@ -164,18 +189,21 @@ knowl-leap/
 
 ## How to Play
 
-1. **Start the Game**: Click "Start Game" on the welcome screen
-2. **Navigate Menus**: Select "Math" from subjects, then choose your preferred math operation
-3. **Control Your Character**:
-   - **Arrow Keys**: Move left/right
-   - **Spacebar/Up Arrow**: Jump
-   - **Mouse Click**: Alternative jump control
-4. **Collect Stars**: Each star triggers a math question
-5. **Answer Questions**: Select the correct answer from four options
-6. **Continue or Retry**: 
-   - Correct answer: Score increases, game continues
-   - Wrong answer: Game over, view your final score
-7. **Restart**: Click "Restart Game" to try again with the same math mode
+### Flappy Bird Mode
+1. **Navigate to Game**: Follow same menu path as platformer
+2. **Control the Bird**:
+   - **Spacebar/Up Arrow/Click**: Flap upward
+3. **Collect Rings**: 
+   - Small rings: +5 points (no pause)
+   - Large red rings: Triggers question (game pauses)
+4. **Navigate Obstacles**: 
+   - Fly through pipe gaps
+   - Avoid bombs
+   - Stay within top/bottom boundaries
+5. **Answer Questions**:
+   - **Correct**: +20 points, 3s immunity (green), 3x speed
+   - **Wrong**: 0.1s stun, then continue
+6. **Survive**: Keep flying and answering to increase your score!
 
 ##🔧 Technical Details
 
@@ -187,11 +215,12 @@ knowl-leap/
 
 ### Key Files
 
-**firstGame.js** - Core game logic:
-- Phaser scene configuration
-- Player physics and controls
-- Star collection and collision detection
-- Callback system for React integration
+**thirdGame.js** - Flappy Bird mode:
+- Endless runner mechanics
+- Dynamic spawning system with pause control
+- Immunity and speed boost system
+- Challenge ring detection
+- Callback: `onChallengeRingPassed`, `onGameOver`
 
 **MainScreen.jsx** - React component:
 - Menu state management
@@ -227,25 +256,32 @@ knowl-leap/
 - Incorrect answers = immediate game over
 - Simple score tracking based on correct answers
 
-## 🚧 Future Enhancements
+##   Future Enhancements
 
-Planned features to align with original concept:
-- [ ] Flying/launching mechanic
-- [ ] Checkpoint-based question system
-- [ ] Speed boost reward system
-- [ ] Stun mechanic for wrong answers
-- [ ] Distance and duration tracking
-- [ ] Enhanced scoring system
-- [ ] Flying obstacles
-- [ ] Sound effects and background music
+### Flappy Bird Mode Enhancements
+- [ ] Progressive difficulty (increasing speed over time)
+- [ ] Different bird skins
+- [ ] Varied obstacle patterns
+- [ ] Combo system for consecutive correct answers
+- [ ] Leaderboard
 
-##  Known Issues
+##   Known Issues
 
 - Asset paths may need adjustment based on your folder structure
 - Score resets on page refresh (no persistence yet)
 - Limited to math questions only
+- Mouse click input may register multiple times (use spacebar for better control)
 
-##  Development Notes
+##   Educational Value
+
+- **Math Practice**: Reinforces arithmetic skills
+- **Quick Thinking**: Time pressure encourages fast mental calculation
+- **Reward System**: Positive reinforcement for correct answers
+- **Low Stakes**: Wrong answers don't end the game immediately (in Flappy mode)
+- **Engagement**: Game mechanics keep learning fun and interactive
+
+##   Development Notes
+ 
 
 ### Callback System
 The game uses a callback system to communicate between Phaser and React:
@@ -255,4 +291,8 @@ export var gameCallbacks = {
     onGameOver: null,       // Triggered on game over
 };
 ```
+##   Contributing
 
+Contributions are welcome! Please feel free to submit issues or pull requests.
+
+---
