@@ -215,7 +215,6 @@ function update(time, delta) {
         bombs.children.entries.forEach((bomb) => {
             bomb.setScale(2);
             bomb.x -= (pipeSpeed * delta) / 1000;
-
             if (bomb.x < -100) bomb.destroy();
         });
 
@@ -240,7 +239,7 @@ function spawnPipes() {
     // Top pipe (hangs down from top)
     var upPipe = pipes.create(850, gapCenter - gap / 2, "up_pipe");
     upPipe.setOrigin(0.5, 1);
-    upPipe.setScale(0.4, 0.9);
+    upPipe.setScale(0.4, 1);
     upPipe.body.allowGravity = false;
     upPipe.setImmovable(true);
     upPipe.refreshBody();
@@ -248,7 +247,7 @@ function spawnPipes() {
     // Bottom pipe (stands up from bottom)
     var downPipe = pipes.create(850, gapCenter + gap / 2, "down_pipe");
     downPipe.setOrigin(0.5, 0);
-    downPipe.setScale(0.4, 0.9);
+    downPipe.setScale(0.4, 1);
     downPipe.body.allowGravity = false;
     downPipe.setImmovable(true);
     downPipe.refreshBody();
@@ -276,8 +275,8 @@ function spawnChallengeRing() {
 
     var y = 300;
     var challengeRing = challengeRings.create(850, y, "ring");
-    challengeRing.setScale(0.2, 0.5);
-    challengeRing.setTint(0x00ff);
+    challengeRing.setScale(0.3, 1);
+    challengeRing.setTint(0x0ff000);
     challengeRing.body.allowGravity = false;
     challengeRing.hasPassed = false;
 
@@ -305,7 +304,7 @@ function passChallengeRing(player, challengeRing) {
 
     challengeRing.hasPassed = true;
     this.physics.pause();
-    player.play("idle");
+
     // Pause all spawn timers
     spawnTimers.forEach((timer) => (timer.paused = true));
 
@@ -330,8 +329,8 @@ function hitObstacle(player, obstacle) {
 export function resumeGame(scene, isCorrect) {
     // Resume all spawn timers
     spawnTimers.forEach((timer) => (timer.paused = false));
-    player.play("fly");
-    if (isCorrect) {
+
+    if (isCorrect === true) {
         score += 20;
         scoreText.setText("Score: " + score);
 
@@ -344,8 +343,6 @@ export function resumeGame(scene, isCorrect) {
         scene.physics.resume();
     } else {
         // Stun for 0.1 seconds
-        score += 10;
-        scoreText.setText("Score: " + score);
         scene.time.delayedCall(100, () => {
             scene.physics.resume();
         });

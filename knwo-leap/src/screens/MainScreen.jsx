@@ -300,10 +300,8 @@ function StartScreen() {
                             options={currentQuestion.options}
                             ans={currentQuestion.answer}
                             onAnswered={(isCorrect) => {
-                                console.log(
-                                    "Answer received:",
-                                    isCorrect ? "CORRECT" : "WRONG"
-                                );
+                                console.log(isCorrect);
+
                                 setsshowQuestionMenu(false);
                                 if (currentScene) {
                                     resumeGame(currentScene, isCorrect);
