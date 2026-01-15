@@ -33,7 +33,14 @@ Knowledge Leap a small interactive learning game where players answer math quest
 ## Demo Video
 
 A Demo video Can be found here on the google drive link , the same video is uploaded to github
+
+
  https://drive.google.com/file/d/1BvLl4T20iIDqEYErfA6wLe5vosz0K30o/view?usp=sharing
+
+ A new Demo of the updated game: 
+
+ 
+https://drive.google.com/file/d/1NZXD6pRtVCf60jOW8YtMdZB09SBWOk0Z/view?usp=sharing
 ##  Installation & Setup
 
 ### Prerequisites
